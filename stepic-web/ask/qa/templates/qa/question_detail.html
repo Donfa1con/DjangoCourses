@@ -1,0 +1,17 @@
+{% extends 'qa/base.html' %}
+
+{% block content %}
+	<h1>Question - {{ question }}</h1>
+    <p>{{ question.text|linebreaksbr }}</p>
+    <hr>
+    <h2>Answers</h2>
+    {% for answer in question.answer.iterator %}
+        <p>{{answer}}</p>
+    {% endfor %}
+    <hr>
+    <h1>New Answer</h1>
+    <form method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}
